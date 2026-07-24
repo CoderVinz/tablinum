@@ -43,6 +43,13 @@
       }
     },
     {
+      "query": "path:wiki/sessions",
+      "color": {
+        "a": 1,
+        "rgb": 9019898
+      }
+    },
+    {
       "query": "path:wiki/operations",
       "color": {
         "a": 1,

@@ -21,6 +21,7 @@ Create this file at `.obsidian/snippets/vault-colors.css` inside the vault:
 
 /* Folder colors in file explorer */
 .nav-folder-title[data-path^="wiki/projects"]     { color: var(--wiki-1); }
+.nav-folder-title[data-path^="wiki/sessions"]     { color: var(--wiki-1); }
 .nav-folder-title[data-path^="wiki/entities"]     { color: var(--wiki-2); }
 .nav-folder-title[data-path^="wiki/concepts"]     { color: var(--wiki-3); }
 .nav-folder-title[data-path^="wiki/sources"]      { color: var(--wiki-4); }
