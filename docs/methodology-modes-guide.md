@@ -12,8 +12,9 @@ Pick a mode that matches how YOU think:
 
 | You think in... | Pick |
 |---|---|
+| Multi-project dev/ops with concrete folders (tablinum default) | **Engineering** |
 | Topic clusters + navigation by following links | **LYT** |
-| Active projects vs ongoing responsibilities vs reference material | **PARA** |
+| Active projects vs ongoing responsibilities vs reference material | **PARA** (vanilla) |
 | Atomic claims with unique IDs and dense linking | **Zettelkasten** |
 | No methodology / want v1.7 default | **Generic** |
 
@@ -86,17 +87,17 @@ v1.8.0 closes that gap. After this release, tablinum is **#1 on 5 of 7 axes** pe
 
 **Philosophy:** organize by **actionability**, not topic. Active work in Projects (with deadline + outcome), ongoing responsibilities in Areas (no deadline), reference material in Resources (by topic), completed/inactive work in Archives.
 
-**Filing convention:**
+**Filing convention (vanilla PARA):**
 - `wiki/projects/<project-name>/<note>.md` — active projects
-- `wiki/projects/inbox/<note>.md` — session notes + general captures land here for triage
-- `wiki/operations/<note>.md` — ongoing ops (services, runbooks, incidents, processes)
-- `wiki/resources/<topic>/<note>.md` — reference material (tools, snippets, patterns, glossary)
-- `wiki/sources/<note>.md` — source summaries and repos
-- `wiki/entities/<Name>.md` — people + companies/teams
-- `wiki/concepts/<Name>.md` — concept pages
-- `wiki/archives/<year>/<note>.md` — completed projects
+- `wiki/projects/inbox/<note>.md` — new ingests + session notes land here for triage
+- `wiki/areas/<area-name>/<note>.md` — ongoing responsibilities
+- `wiki/resources/<topic>/<note>.md` — reference material
+- `wiki/resources/incoming/<note>.md` — new sources for topical sorting
+- `wiki/resources/people/<Name>.md` — entity pages
+- `wiki/resources/concepts/<Name>.md` — concept pages
+- `wiki/archives/<year>/<note>.md` — completed projects, sunsetted areas
 
-> tablinum runs a customized PARA: the org map (`entities/`), concepts, and sources are concrete top-level folders, not nested under `resources/`. `wiki/meta/engineering-conventions.md` is the authoritative routing table.
+> For tablinum's own shipped layout (concrete top-level folders, not everything-under-resources) use the **engineering** mode below, not vanilla PARA.
 
 **Templates** (under `skills/wiki-mode/templates/para/`):
 - `project-template.md` — project with status / deadline / outcome / next-action
@@ -138,6 +139,25 @@ v1.8.0 closes that gap. After this release, tablinum is **#1 on 5 of 7 axes** pe
 
 ---
 
+### Engineering (tablinum's own — the shipped default)
+
+**Philosophy:** organize by actionability like PARA, but with **concrete top-level folders** instead of the abstract Projects/Areas/Resources/Archives buckets. The org map, concepts, and sources are first-class top-level folders, not nested under `resources/`.
+
+**Filing convention** (authoritative table: [`wiki/meta/engineering-conventions.md`](../wiki/meta/engineering-conventions.md)):
+- `wiki/projects/<slug>/` — active work (bugs, decisions, improvements, notes, design); `projects/inbox/` for captures
+- `wiki/operations/` — services, runbooks, incidents, processes
+- `wiki/entities/<Name>.md` — people + companies/teams (the org map)
+- `wiki/sources/<note>.md` — ingested docs + repos
+- `wiki/concepts/<Name>.md` — concepts + open questions (`type: question`)
+- `wiki/resources/` — tools, snippets, patterns, glossary
+- `wiki/archives/<year>/<slug>/` — completed projects
+
+**When to use:** multi-project developer / operations work — the tablinum default. Ships with the `engineering.base` dashboards keyed on `type`/`status`/`project`.
+
+**Pros:** unambiguous homes, no "which bucket?" guessing, dashboard-ready. **Cons:** more top-level folders than vanilla PARA; opinionated toward dev/ops.
+
+---
+
 ## How modes interact with other skills
 
 The integration is **automatic** — once you set a mode, `wiki-ingest`, `save`, and `autoresearch` consult it on every new page. You never have to think about it.
@@ -145,8 +165,8 @@ The integration is **automatic** — once you set a mode, `wiki-ingest`, `save`,
 | Skill | What it does | How mode affects it |
 |---|---|---|
 | `wiki-ingest` | files new source/entity/concept pages | router determines destination folder per mode |
-| `save` | files session notes from the current conversation | router determines `wiki/sessions/` (generic), `wiki/notes/` + MOC update (LYT), `wiki/projects/inbox/` (PARA), or `wiki/<ID>-session-...` (Zettel) |
-| `autoresearch` | files synthesis page after a research loop | router determines `wiki/concepts/` (generic), `wiki/notes/` + topic MOC (LYT), `wiki/resources/<topic>/` (PARA), or `wiki/<ID>-...` (Zettel) |
+| `save` | files session notes from the current conversation | router determines `wiki/projects/inbox/` (engineering/PARA), `wiki/sessions/` (generic), `wiki/notes/` + MOC update (LYT), or `wiki/<ID>-session-...` (Zettel) |
+| `autoresearch` | files synthesis page after a research loop | router determines `wiki/concepts/` (engineering/generic), `wiki/notes/` + topic MOC (LYT), `wiki/resources/<topic>/` (PARA), or `wiki/<ID>-...` (Zettel) |
 
 The router (`scripts/wiki-mode.py route <type> "<name>"`) is the single source of truth. Skills don't compute paths themselves; they call the router and use what it returns.
 

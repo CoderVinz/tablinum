@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "mode": "para",
+  "mode": "engineering",
   "configured_at": "2026-07-14T00:00:00Z",
   "config": {
     "lyt": {
@@ -9,12 +9,9 @@
     },
     "para": {
       "projects_folder": "wiki/projects/",
-      "operations_folder": "wiki/operations/",
+      "areas_folder": "wiki/areas/",
       "resources_folder": "wiki/resources/",
-      "archives_folder": "wiki/archives/",
-      "sources_folder": "wiki/sources/",
-      "entities_folder": "wiki/entities/",
-      "concepts_folder": "wiki/concepts/"
+      "archives_folder": "wiki/archives/"
     },
     "zettelkasten": {
       "id_format": "YYYYMMDDHHMMSSffffff",
@@ -26,6 +23,15 @@
       "entities_folder": "wiki/entities/",
       "concepts_folder": "wiki/concepts/",
       "sessions_folder": "wiki/sessions/"
+    },
+    "engineering": {
+      "projects_folder": "wiki/projects/",
+      "operations_folder": "wiki/operations/",
+      "resources_folder": "wiki/resources/",
+      "archives_folder": "wiki/archives/",
+      "sources_folder": "wiki/sources/",
+      "entities_folder": "wiki/entities/",
+      "concepts_folder": "wiki/concepts/"
     }
   }
 }

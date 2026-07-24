@@ -40,7 +40,7 @@ VAULT_ROOT = Path(__file__).resolve().parent.parent
 META_DIR = VAULT_ROOT / ".vault-meta"
 MODE_PATH = META_DIR / "mode.json"
 
-VALID_MODES = ("generic", "lyt", "para", "zettelkasten")
+VALID_MODES = ("generic", "lyt", "para", "zettelkasten", "engineering")
 VALID_TYPES = ("source", "entity", "concept", "session", "research")
 
 DEFAULT_CONFIG = {
@@ -54,12 +54,9 @@ DEFAULT_CONFIG = {
         },
         "para": {
             "projects_folder": "wiki/projects/",
-            "operations_folder": "wiki/operations/",
+            "areas_folder": "wiki/areas/",
             "resources_folder": "wiki/resources/",
             "archives_folder": "wiki/archives/",
-            "sources_folder": "wiki/sources/",
-            "entities_folder": "wiki/entities/",
-            "concepts_folder": "wiki/concepts/",
         },
         "zettelkasten": {
             "id_format": "YYYYMMDDHHMMSSffffff",
@@ -71,6 +68,17 @@ DEFAULT_CONFIG = {
             "entities_folder": "wiki/entities/",
             "concepts_folder": "wiki/concepts/",
             "sessions_folder": "wiki/sessions/",
+        },
+        # tablinum's own layout — concrete top-level folders, not vanilla PARA.
+        # Authoritative routing table: wiki/meta/engineering-conventions.md
+        "engineering": {
+            "projects_folder": "wiki/projects/",
+            "operations_folder": "wiki/operations/",
+            "resources_folder": "wiki/resources/",
+            "archives_folder": "wiki/archives/",
+            "sources_folder": "wiki/sources/",
+            "entities_folder": "wiki/entities/",
+            "concepts_folder": "wiki/concepts/",
         },
     },
 }
@@ -172,15 +180,28 @@ def route_path(mode, content_type, name, cfg):
 
     if mode == "para":
         p = cfg["config"]["para"]
-        # tablinum layout (see wiki/references/engineering-conventions.md):
-        # concrete top-level folders, not everything-under-resources.
+        # Vanilla PARA: new reference material lands in resources/<bucket>/;
+        # the user sorts into specific topics via their own workflow.
         mapping = {
-            "source":   p["sources_folder"] + slug + ".md",
-            "entity":   p["entities_folder"] + raw + ".md",   # preserve capitalization
-            "concept":  p["concepts_folder"] + raw + ".md",
-            # Session notes land in projects/inbox/; user reroutes to specific projects
+            "source":   p["resources_folder"] + "incoming/" + slug + ".md",
+            "entity":   p["resources_folder"] + "people/" + raw + ".md",
+            "concept":  p["resources_folder"] + "concepts/" + raw + ".md",
             "session":  p["projects_folder"] + "inbox/" + slug + ".md",
-            "research": p["concepts_folder"] + raw + ".md",
+            "research": p["resources_folder"] + slug + "/" + slug + ".md",
+        }
+        return mapping[content_type]
+
+    if mode == "engineering":
+        # tablinum's own layout — concrete top-level folders.
+        # Authoritative routing table: wiki/meta/engineering-conventions.md
+        e = cfg["config"]["engineering"]
+        mapping = {
+            "source":   e["sources_folder"] + slug + ".md",
+            "entity":   e["entities_folder"] + raw + ".md",   # preserve capitalization
+            "concept":  e["concepts_folder"] + raw + ".md",
+            # Session notes land in projects/inbox/; user reroutes to specific projects
+            "session":  e["projects_folder"] + "inbox/" + slug + ".md",
+            "research": e["concepts_folder"] + raw + ".md",
         }
         return mapping[content_type]
 

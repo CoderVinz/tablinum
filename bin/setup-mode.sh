@@ -14,7 +14,7 @@
 #
 # Flags:
 #   --mode MODE     Skip the interactive prompt; pick MODE directly.
-#                   Valid: generic | lyt | para | zettelkasten
+#                   Valid: generic | lyt | para | zettelkasten | engineering
 #   --no-seed       Skip the optional folder-seeding step
 #   --check         Print current mode + diagnostics; write nothing
 #
@@ -75,23 +75,25 @@ if [ -z "$REQUESTED_MODE" ]; then
   say "Pick a methodology mode for this vault:"
   say "  1) generic       — v1.7 default; wiki/sources/, entities/, concepts/"
   say "  2) lyt           — Linking Your Thinking (MOCs + atomic notes flat under wiki/notes/)"
-  say "  3) para          — Projects / Areas / Resources / Archives"
+  say "  3) para          — vanilla Projects / Areas / Resources / Archives"
   say "  4) zettelkasten  — timestamped IDs, flat under wiki/, dense linking"
+  say "  5) engineering   — tablinum's own layout (projects/operations/entities/... — the shipped default)"
   say ""
-  printf "Pick [1-4, default 1]: "
-  read -r choice || choice="1"
-  case "${choice:-1}" in
+  printf "Pick [1-5, default 5]: "
+  read -r choice || choice="5"
+  case "${choice:-5}" in
     1|generic)       REQUESTED_MODE="generic" ;;
     2|lyt)           REQUESTED_MODE="lyt" ;;
     3|para)          REQUESTED_MODE="para" ;;
     4|zettelkasten)  REQUESTED_MODE="zettelkasten" ;;
+    5|engineering)   REQUESTED_MODE="engineering" ;;
     *) warn "invalid choice: $choice"; exit 3 ;;
   esac
 fi
 
 case "$REQUESTED_MODE" in
-  generic|lyt|para|zettelkasten) ;;
-  *) warn "invalid mode: $REQUESTED_MODE (valid: generic|lyt|para|zettelkasten)"; exit 3 ;;
+  generic|lyt|para|zettelkasten|engineering) ;;
+  *) warn "invalid mode: $REQUESTED_MODE (valid: generic|lyt|para|zettelkasten|engineering)"; exit 3 ;;
 esac
 
 # ── Write the mode ──────────────────────────────────────────────────────────
@@ -114,13 +116,19 @@ if ! $NO_SEED; then
           say "✓ Created wiki/mocs/ and wiki/notes/"
           ;;
         para)
-          # tablinum's customized PARA layout (see wiki/meta/engineering-conventions.md
-          # and bin/structure/schema.json) — concrete top-level folders, not areas/
-          # or resources/{incoming,people,concepts}.
+          # vanilla PARA
+          mkdir -p "$VAULT/wiki/projects/inbox" "$VAULT/wiki/areas" \
+                   "$VAULT/wiki/resources/incoming" "$VAULT/wiki/resources/people" \
+                   "$VAULT/wiki/resources/concepts" "$VAULT/wiki/archives"
+          say "✓ Created PARA folder structure: projects/{inbox}/, areas/, resources/{incoming,people,concepts}/, archives/"
+          ;;
+        engineering)
+          # tablinum's own layout — see wiki/meta/engineering-conventions.md
+          # and bin/structure/schema.json (the shipped default).
           mkdir -p "$VAULT/wiki/projects/inbox" "$VAULT/wiki/operations" \
                    "$VAULT/wiki/resources" "$VAULT/wiki/archives" \
                    "$VAULT/wiki/sources" "$VAULT/wiki/entities" "$VAULT/wiki/concepts"
-          say "✓ Created PARA (tablinum) structure: projects/{inbox}/, operations/, resources/, archives/, sources/, entities/, concepts/"
+          say "✓ Created engineering structure: projects/{inbox}/, operations/, resources/, archives/, sources/, entities/, concepts/"
           ;;
         zettelkasten)
           say "✓ Zettelkasten uses no subfolders; all notes file flat under wiki/"

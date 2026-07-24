@@ -64,7 +64,7 @@ When the user opens this project for the first time:
 
 ## Engineering layer (tablinum)
 
-This vault runs in **PARA mode** (`.vault-meta/mode.json`, committed) and adds an engineering layer for multi-project developer / operations / design work.
+This vault runs in **engineering mode** (`.vault-meta/mode.json`, committed) — tablinum's own layout for multi-project developer / operations / design work (concrete top-level folders, not vanilla PARA).
 
 **Before filing any engineering note, read `wiki/meta/engineering-conventions.md`** — it defines the routing table, folder layout, frontmatter contract, and status lifecycles. Summary:
 

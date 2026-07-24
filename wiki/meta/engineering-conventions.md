@@ -12,7 +12,7 @@ related:
 
 # Engineering Conventions
 
-How this vault organizes developer / operations / design work across multiple projects. Agents: consult this before filing any engineering note. Vault mode is **PARA** (`.vault-meta/mode.json`) — organize by actionability.
+How this vault organizes developer / operations / design work across multiple projects. Agents: consult this before filing any engineering note. Vault mode is **engineering** (`.vault-meta/mode.json`) — tablinum's own layout (concrete top-level folders), organized by actionability. This file is its authoritative routing table.
 
 Navigation: [[Meta Index]] | [[hot]] | engineering.base (dashboards)
 

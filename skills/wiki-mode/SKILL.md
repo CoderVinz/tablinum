@@ -1,6 +1,6 @@
 ---
 name: wiki-mode
-description: "Methodology modes for the Compound Vault. Lets the vault declare an organizational style (LYT / PARA / Zettelkasten / Generic) that wiki-ingest, save, and autoresearch consult before filing new pages. Reads `.vault-meta/mode.json`; defaults to `generic` (v1.6/v1.7 behavior) when absent. Per the May 2026 compass artifact, methodology support was priority gap 5 — no other Claude+Obsidian competitor ships it as a first-class skill. Triggers on: set vault mode, switch to PARA, use LYT, what's my vault mode, zettelkasten setup, wiki mode, methodology mode, change mode, configure mode."
+description: "Methodology modes for the Compound Vault. Lets the vault declare an organizational style (Engineering / LYT / PARA / Zettelkasten / Generic) that wiki-ingest, save, and autoresearch consult before filing new pages. Reads `.vault-meta/mode.json`; defaults to `generic` (v1.6/v1.7 behavior) when absent. Per the May 2026 compass artifact, methodology support was priority gap 5 — no other Claude+Obsidian competitor ships it as a first-class skill. Triggers on: set vault mode, switch to PARA, use LYT, what's my vault mode, zettelkasten setup, wiki mode, methodology mode, change mode, configure mode."
 allowed-tools: Read, Write, Bash
 ---
 
@@ -14,7 +14,7 @@ The v1.6 + v1.7 vault structure was opinion-free — `wiki/sources/`, `wiki/enti
 
 ---
 
-## The four modes
+## The five modes
 
 ### LYT (Linking Your Thinking — Nick Milo)
 
@@ -55,6 +55,12 @@ The v1.6 + v1.7 vault structure was opinion-free — `wiki/sources/`, `wiki/enti
 
 **When to use:** when you don't want to commit to a methodology, or you're migrating from v1.7 and want zero behavior change.
 
+### Engineering (tablinum's shipped default)
+
+**Filing convention:** tablinum's own layout — concrete top-level folders `wiki/projects/`, `wiki/operations/`, `wiki/entities/`, `wiki/sources/`, `wiki/concepts/`, `wiki/resources/`, `wiki/archives/`. Authoritative routing table: `wiki/meta/engineering-conventions.md`.
+
+**When to use:** multi-project developer / operations work. Ships with the `engineering.base` dashboards. This is what tablinum's committed `mode.json` selects.
+
 ---
 
 ## How to set the mode
@@ -63,7 +69,7 @@ The v1.6 + v1.7 vault structure was opinion-free — `wiki/sources/`, `wiki/enti
 bash bin/setup-mode.sh
 ```
 
-Interactive prompt: pick one of the 4 modes. Writes `.vault-meta/mode.json`. Optionally seeds template folders (LYT `mocs/`, PARA `projects/areas/resources/archives/`).
+Interactive prompt: pick one of the 5 modes. Writes `.vault-meta/mode.json`. Optionally seeds template folders (LYT `mocs/`, PARA `projects/areas/resources/archives/`).
 
 To check the current mode programmatically:
 
@@ -80,7 +86,7 @@ To switch modes later: re-run `setup-mode.sh`. Existing files are NOT auto-migra
 ```json
 {
   "schema_version": 1,
-  "mode": "lyt|para|zettelkasten|generic",
+  "mode": "engineering|generic|lyt|para|zettelkasten",
   "configured_at": "ISO-8601 timestamp",
   "config": {
     "lyt": {
@@ -103,12 +109,21 @@ To switch modes later: re-run `setup-mode.sh`. Existing files are NOT auto-migra
       "entities_folder": "wiki/entities/",
       "concepts_folder": "wiki/concepts/",
       "sessions_folder": "wiki/sessions/"
+    },
+    "engineering": {
+      "projects_folder": "wiki/projects/",
+      "operations_folder": "wiki/operations/",
+      "resources_folder": "wiki/resources/",
+      "archives_folder": "wiki/archives/",
+      "sources_folder": "wiki/sources/",
+      "entities_folder": "wiki/entities/",
+      "concepts_folder": "wiki/concepts/"
     }
   }
 }
 ```
 
-The `config` block always includes ALL four modes; the active one is named by `mode`. This lets you switch modes without losing custom folder overrides.
+The `config` block always includes ALL five modes; the active one is named by `mode`. This lets you switch modes without losing custom folder overrides.
 
 ---
 
@@ -124,13 +139,15 @@ Each consults `.vault-meta/mode.json` (via `cat` or direct Read). If absent → 
 
 The routing table:
 
-| Content type | Generic | LYT | PARA | Zettelkasten |
+| Content type | Generic | LYT | PARA (vanilla) | Zettelkasten |
 |---|---|---|---|---|
-| New source ingest | `wiki/sources/foo.md` | `wiki/notes/foo.md` + add to topic MOC | `wiki/sources/foo.md` | `wiki/<ID>-foo.md` |
-| New entity | `wiki/entities/<Name>.md` | `wiki/notes/<Name>.md` + entity MOC | `wiki/entities/<Name>.md` | `wiki/<ID>-<name>.md` |
-| New concept | `wiki/concepts/<Name>.md` | `wiki/notes/<Name>.md` + concept MOC | `wiki/concepts/<Name>.md` | `wiki/<ID>-<name>.md` |
-| Session note (`/save`) | `wiki/sessions/<date>-<topic>.md` | `wiki/notes/<date>-<topic>.md` + session MOC | `wiki/projects/<project>/<date>-<topic>.md` | `wiki/<ID>-session-<topic>.md` |
+| New source ingest | `wiki/sources/foo.md` | `wiki/notes/foo.md` + add to topic MOC | `wiki/resources/incoming/foo.md` | `wiki/<ID>-foo.md` |
+| New entity | `wiki/entities/<Name>.md` | `wiki/notes/<Name>.md` + entity MOC | `wiki/resources/people/<Name>.md` | `wiki/<ID>-<name>.md` |
+| New concept | `wiki/concepts/<Name>.md` | `wiki/notes/<Name>.md` + concept MOC | `wiki/resources/concepts/<Name>.md` | `wiki/<ID>-<name>.md` |
+| Session note (`/save`) | `wiki/sessions/<date>-<topic>.md` | `wiki/notes/<date>-<topic>.md` + session MOC | `wiki/projects/inbox/<date>-<topic>.md` | `wiki/<ID>-session-<topic>.md` |
 | Research output (`/autoresearch`) | `wiki/concepts/<topic>.md` | `wiki/notes/<topic>.md` + topic MOC | `wiki/resources/<topic>/<topic>.md` | `wiki/<ID>-<topic>.md` |
+
+**engineering** (tablinum's shipped mode) routes like Generic for source/entity/concept (`wiki/sources/`, `wiki/entities/`, `wiki/concepts/`) but sends sessions to `wiki/projects/inbox/` and research to `wiki/concepts/`. Authoritative table: `wiki/meta/engineering-conventions.md`.
 
 ---
 
