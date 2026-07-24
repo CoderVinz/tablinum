@@ -50,7 +50,7 @@
       }
     },
     {
-      "query": "path:wiki/resources",
+      "query": "path:wiki/technologies OR path:wiki/snippets",
       "color": {
         "a": 1,
         "rgb": 13724009

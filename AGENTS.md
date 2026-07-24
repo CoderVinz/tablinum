@@ -71,7 +71,7 @@ This vault runs in **engineering mode** (`.vault-meta/mode.json`, committed) —
 - Active work: `wiki/projects/<slug>/` — each has `_project.md` (MOC) plus `bugs/`, `decisions/`, `improvements/`, `notes/`, `design/`
 - Ongoing ops: `wiki/operations/` (runbooks/incidents/services/processes)
 - People + companies/teams: `wiki/entities/`; repeatable procedures: `wiki/operations/processes/`
-- Reference: `wiki/resources/` (snippets, tools/technology pages, patterns, design, glossary)
+- Tech inventory: `wiki/technologies/`; reusable code: `wiki/snippets/`; concepts/patterns/glossary/questions: `wiki/concepts/`
 - Done: `wiki/archives/<year>/<slug>/`
 
 Templates for `project`, `bug`, `decision`, `improvement`, `runbook`, `incident`, `design`, `meeting`, `snippet` live in `_templates/`. Every engineering note needs `type`, `project`, `status` frontmatter — the dashboards in `wiki/meta/engineering.base` key on them. `/save` files session notes into `wiki/projects/<slug>/notes/`; if the session's project is ambiguous, ask.

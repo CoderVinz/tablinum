@@ -74,11 +74,12 @@ DEFAULT_CONFIG = {
         "engineering": {
             "projects_folder": "wiki/projects/",
             "operations_folder": "wiki/operations/",
-            "resources_folder": "wiki/resources/",
             "archives_folder": "wiki/archives/",
             "sources_folder": "wiki/sources/",
             "entities_folder": "wiki/entities/",
             "concepts_folder": "wiki/concepts/",
+            "technologies_folder": "wiki/technologies/",
+            "snippets_folder": "wiki/snippets/",
         },
     },
 }

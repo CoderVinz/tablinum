@@ -171,7 +171,7 @@ Steps:
 3. **Create** source summary in `wiki/sources/`. Use the source frontmatter schema from `references/frontmatter.md`. Assign an address per the **Address Assignment** section below.
 4. **Create or update** pages for named things, routed by type — one page per thing, addresses assigned to new pages:
    - **people and companies/teams → `wiki/entities/`** (the org map: everyone and every organization)
-   - **products and technologies → `wiki/resources/tools/`**
+   - **products and technologies → `wiki/technologies/`**
    - **code repositories → `wiki/sources/`**
    - **running systems / services → `wiki/operations/services/`**
 5. **Create or update** concept pages for significant ideas and frameworks. Assign addresses to new concept pages.

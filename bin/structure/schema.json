@@ -1,15 +1,16 @@
 {
-  "version": 9,
+  "version": 10,
   "updated": "2026-07-24",
   "description": "Canonical wiki folder layout for tablinum. version is the migration signal: bump it whenever the layout changes, add a rename entry and/or a bin/migrations/NNN script for the change, and the laptop's migrate-structure.sh will pick it up on next sync.",
   "spine": ["wiki/index.md", "wiki/hot.md", "wiki/log.md"],
   "folders": [
-    { "path": "wiki/concepts",    "holds": "Concepts, ideas, explanations, and open questions (type: question, status tracks whether still open — pick them up later via the dashboard Open Questions view)" },
+    { "path": "wiki/concepts",    "holds": "Conceptual knowledge, distinguished by type: concepts/ideas/explanations, architecture patterns (type: pattern), glossary terms (type: glossary), open questions (type: question), comparisons. Open questions are picked up later via the dashboard Open Questions view." },
     { "path": "wiki/entities",    "holds": "People and companies/teams (the org map — everyone and every organization). NOT products, repos, or running systems." },
+    { "path": "wiki/technologies", "holds": "Technology/stack inventory — one page per language/framework/library/db/infra/product (type: technology). Ingested tech docs under technologies/docs/." },
+    { "path": "wiki/snippets",    "holds": "Reusable code snippets (type: snippet)" },
     { "path": "wiki/sources",     "holds": "Ingested documents / URLs, and code repositories (repo pages)" },
     { "path": "wiki/projects",    "holds": "Time-bound work with an outcome" },
     { "path": "wiki/operations",  "holds": "How the systems + org run: services (catalog), runbooks, incidents/postmortems, and processes (repeatable procedures, each linking the tools it needs and the project it serves)" },
-    { "path": "wiki/resources",   "holds": "Reference material: tools, snippets, patterns, glossary" },
     { "path": "wiki/archives",    "holds": "Completed projects" },
     { "path": "wiki/meta",        "holds": "Vault orientation + dashboards (getting-started, overview, dashboard, *.base)" },
     { "path": "wiki/meta/lint-reports", "holds": "Generated wiki-lint + tiling reports (lint-report-YYYY-MM-DD.md)" },
@@ -28,6 +29,10 @@
     { "from": "wiki/processes",             "to": "wiki/operations/processes", "since_version": 5, "note": "processes fold into the operations hub" },
     { "from": "wiki/comparisons",           "to": "wiki/concepts", "since_version": 6, "note": "a comparison is a concept with a verdict" },
     { "from": "wiki/questions",             "to": "wiki/concepts", "since_version": 8, "note": "open questions live in concepts, kept distinct by type: question" },
-    { "from": "wiki/references",            "to": "wiki/meta", "since_version": 9, "note": "the operating manual is meta, not a resources sibling" }
+    { "from": "wiki/references",            "to": "wiki/meta", "since_version": 9, "note": "the operating manual is meta, not a resources sibling" },
+    { "from": "wiki/resources/tools",       "to": "wiki/technologies", "since_version": 10, "note": "tech inventory is first-class" },
+    { "from": "wiki/resources/snippets",    "to": "wiki/snippets", "since_version": 10, "note": "reusable code, top-level" },
+    { "from": "wiki/resources/patterns",    "to": "wiki/concepts", "since_version": 10, "note": "a pattern is a concept (type: pattern)" },
+    { "from": "wiki/resources/glossary",    "to": "wiki/concepts", "since_version": 10, "note": "a glossary term is a concept (type: glossary)" }
   ]
 }
