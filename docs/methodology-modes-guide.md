@@ -144,7 +144,8 @@ v1.8.0 closes that gap. After this release, tablinum is **#1 on 5 of 7 axes** pe
 **Philosophy:** organize by actionability like PARA, but with **concrete top-level folders** instead of the abstract Projects/Areas/Resources/Archives buckets. The org map, concepts, and sources are first-class top-level folders, not nested under `resources/`.
 
 **Filing convention** (authoritative table: [`wiki/meta/engineering-conventions.md`](../wiki/meta/engineering-conventions.md)):
-- `wiki/projects/<slug>/` — active work (bugs, decisions, improvements, notes, design); `projects/inbox/` for captures
+- `wiki/projects/<slug>/` — active work (bugs, decisions, improvements, notes, design)
+- `wiki/sessions/` — session + general-meeting notes (`/save`)
 - `wiki/operations/` — services, runbooks, incidents, processes
 - `wiki/entities/<Name>.md` — people + companies/teams (the org map)
 - `wiki/sources/<note>.md` — ingested docs + repos
@@ -165,7 +166,7 @@ The integration is **automatic** — once you set a mode, `wiki-ingest`, `save`,
 | Skill | What it does | How mode affects it |
 |---|---|---|
 | `wiki-ingest` | files new source/entity/concept pages | router determines destination folder per mode |
-| `save` | files session notes from the current conversation | router determines `wiki/projects/inbox/` (engineering/PARA), `wiki/sessions/` (generic), `wiki/notes/` + MOC update (LYT), or `wiki/<ID>-session-...` (Zettel) |
+| `save` | files session notes from the current conversation | router determines `wiki/sessions/` (engineering), `wiki/projects/inbox/` (PARA), `wiki/sessions/` (generic), `wiki/notes/` + MOC update (LYT), or `wiki/<ID>-session-...` (Zettel) |
 | `autoresearch` | files synthesis page after a research loop | router determines `wiki/concepts/` (engineering/generic), `wiki/notes/` + topic MOC (LYT), `wiki/resources/<topic>/` (PARA), or `wiki/<ID>-...` (Zettel) |
 
 The router (`scripts/wiki-mode.py route <type> "<name>"`) is the single source of truth. Skills don't compute paths themselves; they call the router and use what it returns.

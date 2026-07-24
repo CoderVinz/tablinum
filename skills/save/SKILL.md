@@ -34,6 +34,7 @@ Full decision tree: [`wiki/meta/transport-fallback.md`](../../wiki/meta/transpor
 
 Before creating the session note, consult the vault's methodology mode via `python3 scripts/wiki-mode.py route session "<topic-summary>"`. The router returns the vault-relative path:
 
+- **engineering** (tablinum default): `wiki/sessions/<date>-<topic>.md` (or `projects/<slug>/notes/` if the session clearly belongs to one project)
 - **generic**: `wiki/sessions/<date>-<topic>.md` (v1.7 default)
 - **LYT**: `wiki/notes/<date>-<topic>.md` + update the relevant session/journal MOC
 - **PARA**: `wiki/projects/inbox/<date>-<topic>.md` (user reroutes to specific projects)

@@ -104,7 +104,7 @@ Distill:
 Leave alone:
 - Single notes with no overlap (nothing to merge yet)
 - Notes younger than ~1 week (topic may still be moving)
-- `wiki/.raw/` and `wiki/inbox/` (wiki-ingest's territory)
+- `wiki/.raw/` and `wiki/sources/incoming/` (ingest triage territory)
 - Superseded notes (already resolved; keep for the record)
 
 Distill rewrites the map, not the territory: session notes are never edited beyond

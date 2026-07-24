@@ -29,6 +29,7 @@ Navigation: [[overview]] | [[log]] | [[hot]] | [[dashboard]] | [[getting-started
 | Snippets | [[Snippets Index]] | 0 |
 | Sources | [[Sources Index]] | 0 |
 | Projects | [[Projects Index]] | 0 |
+| Sessions | [[Sessions Index]] | 0 |
 | Operations | [[Operations Index]] | 0 |
 | Meta | [[Meta Index]] | 0 |
 

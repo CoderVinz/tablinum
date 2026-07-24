@@ -38,7 +38,8 @@ wiki/                   # tablinum engineering layout (authoritative: wiki/meta/
 ├── index.md            # master catalog of all pages
 ├── log.md              # chronological record of all operations
 ├── hot.md              # hot cache: recent context summary (~500 words)
-├── projects/           # active work — bugs/decisions/improvements/notes/design; inbox/ for captures
+├── projects/           # active work — one folder per project (bugs/decisions/improvements/notes/design)
+├── sessions/           # session + general-meeting notes (/save)
 ├── operations/         # services, runbooks, incidents, processes
 ├── entities/           # people + companies/teams (the org map)
 │   └── Entities Index.md

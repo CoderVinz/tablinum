@@ -125,10 +125,10 @@ if ! $NO_SEED; then
         engineering)
           # tablinum's own layout — see wiki/meta/engineering-conventions.md
           # and bin/structure/schema.json (the shipped default).
-          mkdir -p "$VAULT/wiki/projects/inbox" "$VAULT/wiki/operations" \
+          mkdir -p "$VAULT/wiki/projects" "$VAULT/wiki/sessions" "$VAULT/wiki/operations" \
                    "$VAULT/wiki/technologies" "$VAULT/wiki/snippets" "$VAULT/wiki/archives" \
                    "$VAULT/wiki/sources" "$VAULT/wiki/entities" "$VAULT/wiki/concepts"
-          say "✓ Created engineering structure: projects/{inbox}/, operations/, technologies/, snippets/, archives/, sources/, entities/, concepts/"
+          say "✓ Created engineering structure: projects/, sessions/, operations/, technologies/, snippets/, archives/, sources/, entities/, concepts/"
           ;;
         zettelkasten)
           say "✓ Zettelkasten uses no subfolders; all notes file flat under wiki/"

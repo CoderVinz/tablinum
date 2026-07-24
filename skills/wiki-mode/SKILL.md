@@ -147,7 +147,7 @@ The routing table:
 | Session note (`/save`) | `wiki/sessions/<date>-<topic>.md` | `wiki/notes/<date>-<topic>.md` + session MOC | `wiki/projects/inbox/<date>-<topic>.md` | `wiki/<ID>-session-<topic>.md` |
 | Research output (`/autoresearch`) | `wiki/concepts/<topic>.md` | `wiki/notes/<topic>.md` + topic MOC | `wiki/resources/<topic>/<topic>.md` | `wiki/<ID>-<topic>.md` |
 
-**engineering** (tablinum's shipped mode) routes like Generic for source/entity/concept (`wiki/sources/`, `wiki/entities/`, `wiki/concepts/`) but sends sessions to `wiki/projects/inbox/` and research to `wiki/concepts/`. Authoritative table: `wiki/meta/engineering-conventions.md`.
+**engineering** (tablinum's shipped mode) routes like Generic for source/entity/concept (`wiki/sources/`, `wiki/entities/`, `wiki/concepts/`) but sends sessions to `wiki/sessions/` and research to `wiki/sources/research/`. Authoritative table: `wiki/meta/engineering-conventions.md`.
 
 ---
 

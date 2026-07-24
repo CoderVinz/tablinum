@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "updated": "2026-07-24",
   "description": "Canonical wiki folder layout for tablinum. version is the migration signal: bump it whenever the layout changes, add a rename entry and/or a bin/migrations/NNN script for the change, and the laptop's migrate-structure.sh will pick it up on next sync.",
   "spine": ["wiki/index.md", "wiki/hot.md", "wiki/log.md"],
@@ -11,7 +11,8 @@
     { "path": "wiki/sources",     "holds": "Ingested documents / URLs, and code repositories (repo pages)" },
     { "path": "wiki/sources/research", "holds": "Research synthesis outputs (/autoresearch deep-dives)" },
     { "path": "wiki/sources/incoming", "holds": "Sources captured but not yet properly ingested/written up — a triage queue" },
-    { "path": "wiki/projects",    "holds": "Time-bound work with an outcome" },
+    { "path": "wiki/projects",    "holds": "Time-bound work with an outcome (one folder per project)" },
+    { "path": "wiki/sessions",    "holds": "Session notes (/save) and general meeting notes not tied to a specific project — dated records" },
     { "path": "wiki/operations",  "holds": "How the systems + org run: services (catalog), runbooks, incidents/postmortems, and processes (repeatable procedures, each linking the tools it needs and the project it serves)" },
     { "path": "wiki/archives",    "holds": "Completed projects" },
     { "path": "wiki/meta",        "holds": "Vault orientation + dashboards (getting-started, overview, dashboard, *.base)" },
@@ -35,6 +36,7 @@
     { "from": "wiki/resources/tools",       "to": "wiki/technologies", "since_version": 10, "note": "tech inventory is first-class" },
     { "from": "wiki/resources/snippets",    "to": "wiki/snippets", "since_version": 10, "note": "reusable code, top-level" },
     { "from": "wiki/resources/patterns",    "to": "wiki/concepts", "since_version": 10, "note": "a pattern is a concept (type: pattern)" },
-    { "from": "wiki/resources/glossary",    "to": "wiki/concepts", "since_version": 10, "note": "a glossary term is a concept (type: glossary)" }
+    { "from": "wiki/resources/glossary",    "to": "wiki/concepts", "since_version": 10, "note": "a glossary term is a concept (type: glossary)" },
+    { "from": "wiki/projects/inbox",        "to": "wiki/sessions", "since_version": 12, "note": "engineering drops the projects inbox; sessions get a real top-level home" }
   ]
 }

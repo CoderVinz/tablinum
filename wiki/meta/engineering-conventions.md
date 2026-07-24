@@ -27,8 +27,9 @@ wiki/
     bugs/                   bug notes (template: bug)
     decisions/              ADRs (template: decision)
     improvements/           future work / ideas / tech debt (template: improvement)
-    notes/                  sessions (/save lands here), meetings, scratch
+    notes/                  project-specific sessions/meetings/scratch
     design/                 design specs for this project (template: design)
+  sessions/                 session + general-meeting notes not tied to one project (/save)
   operations/               how the systems + org run (top-level)
     runbooks/               runbooks (template: runbook)
     incidents/              incidents & postmortems (template: incident)
@@ -51,8 +52,8 @@ wiki/
 | Found/fixed a bug | `bug` | `projects/<slug>/bugs/YYYY-MM-DD-<slug>.md` |
 | Chose between approaches | `decision` | `projects/<slug>/decisions/YYYY-MM-DD-<slug>.md` |
 | "We should later..." / tech debt | `improvement` | `projects/<slug>/improvements/<slug>.md` |
-| Work session ended (`/save`) | session note | `projects/<slug>/notes/YYYY-MM-DD-<topic>.md` |
-| Meeting happened | `meeting` | `projects/<slug>/notes/` (project) or `projects/inbox/` (general, triage later) |
+| Work session ended (`/save`) | session note | `projects/<slug>/notes/YYYY-MM-DD-<topic>.md` (known project) or `sessions/YYYY-MM-DD-<topic>.md` (ambiguous) |
+| Meeting happened | `meeting` | `projects/<slug>/notes/` (project) or `sessions/YYYY-MM-DD-<topic>.md` (general) |
 | Prod broke | `incident` | `operations/incidents/YYYY-MM-DD-<slug>.md` |
 | Documented a procedure | `runbook` | `operations/runbooks/<service>-<action>.md` |
 | Design/architecture spec | `design` | `projects/<slug>/design/` |

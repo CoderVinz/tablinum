@@ -80,6 +80,7 @@ DEFAULT_CONFIG = {
             "concepts_folder": "wiki/concepts/",
             "technologies_folder": "wiki/technologies/",
             "snippets_folder": "wiki/snippets/",
+            "sessions_folder": "wiki/sessions/",
         },
     },
 }
@@ -200,8 +201,8 @@ def route_path(mode, content_type, name, cfg):
             "source":   e["sources_folder"] + slug + ".md",
             "entity":   e["entities_folder"] + raw + ".md",   # preserve capitalization
             "concept":  e["concepts_folder"] + raw + ".md",
-            # Session notes land in projects/inbox/; user reroutes to specific projects
-            "session":  e["projects_folder"] + "inbox/" + slug + ".md",
+            # Session + general-meeting notes land in sessions/ (a real home, not an inbox)
+            "session":  e["sessions_folder"] + slug + ".md",
             # Research synthesis lands under sources/research/
             "research": e["sources_folder"] + "research/" + slug + ".md",
         }
