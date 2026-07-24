@@ -26,6 +26,8 @@ git clone https://github.com/CoderVinz/tablinum.git
 
 Then follow **[SETUP.md](SETUP.md)** — open the repo in your agent (opencode) and say "follow SETUP.md".
 
+**Upgrading an existing vault?** See **[MIGRATING.md](MIGRATING.md)** (incl. recovery if `/sync` gets stuck on the layout change).
+
 ## Workflow
 
 - End of session: `/save` — files the session into the wiki

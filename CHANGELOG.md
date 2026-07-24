@@ -14,6 +14,8 @@ migration tool moves your notes for you.
 
 ### ⚠️ Upgrade — do this first (testers)
 
+> **Full step-by-step + recovery if `/sync` gets stuck: see [MIGRATING.md](MIGRATING.md).**
+
 On your work laptop, in order:
 
 1. **`bash bin/sync.sh`** (or `/sync`) — pulls the update. It now prints
