@@ -34,20 +34,24 @@ vault/
 Standard wiki structure:
 
 ```
-wiki/
+wiki/                   # tablinum engineering layout (authoritative: wiki/meta/engineering-conventions.md)
 ├── index.md            # master catalog of all pages
 ├── log.md              # chronological record of all operations
 ├── hot.md              # hot cache: recent context summary (~500 words)
-├── overview.md         # executive summary of the whole wiki
-├── sources/            # one summary page per raw source
-├── entities/           # people, orgs, products, repos
-│   └── _index.md
-├── concepts/           # ideas, patterns, frameworks
-│   └── _index.md
-├── domains/            # top-level topic areas
-│   └── _index.md
-└── meta/               # dashboards, lint reports, conventions
+├── projects/           # active work — bugs/decisions/improvements/notes/design; inbox/ for captures
+├── operations/         # services, runbooks, incidents, processes
+├── entities/           # people + companies/teams (the org map)
+│   └── Entities Index.md
+├── technologies/       # tech/stack inventory (template: technology); docs/ for ingested tech docs
+├── snippets/           # reusable code
+├── sources/            # ingested docs + repos
+├── concepts/           # concepts, patterns (type: pattern), glossary (type: glossary), open questions (type: question)
+│   └── Concepts Index.md
+├── archives/           # completed projects
+└── meta/               # orientation + dashboards + operating manual (engineering-conventions, methodology-modes, transport-fallback)
 ```
+
+Each content folder has a named `<Folder> Index.md` hub page (not an aliased `_index.md`).
 
 Dot-prefixed folders (`.raw/`) are hidden in Obsidian's file explorer and graph view. Use this for source documents.
 
@@ -118,8 +122,8 @@ Steps:
 1. Determine the wiki mode. Read `references/modes.md` to show the 6 options and pick the best fit.
 2. Ask: "What is this vault for?" (one question, then proceed).
 3. Create full folder structure under `wiki/` based on the mode.
-4. Create domain pages + `_index.md` sub-indexes.
-5. Create `wiki/index.md`, `wiki/log.md`, `wiki/hot.md`, `wiki/overview.md`.
+4. Create the folder pages + named `<Folder> Index.md` sub-index hubs.
+5. Create `wiki/index.md`, `wiki/log.md`, `wiki/hot.md`, `wiki/meta/overview.md`.
 6. Create `_templates/` files for each note type.
 7. Apply visual customization. Read `references/css-snippets.md`. Create `.obsidian/snippets/vault-colors.css`.
 8. Create the vault CLAUDE.md using the template below.
@@ -174,7 +178,7 @@ Path: ~/path/to/vault
 When you need context not already in this project:
 1. Read wiki/hot.md first (recent context, ~500 words)
 2. If not enough, read wiki/index.md (full catalog)
-3. If you need domain specifics, read wiki/<domain>/_index.md
+3. If you need domain specifics, read the relevant `wiki/<folder>/<Folder> Index.md` hub
 4. Only then read individual wiki pages
 
 Do NOT read the wiki for:
