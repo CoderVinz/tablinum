@@ -7,8 +7,7 @@ tags:
   - wiki-mode
 status: evergreen
 related:
-  - "[[methodology-modes-guide]]"
-  - "[[wiki-mode]]"
+  - "[[Meta Index]]"
 ---
 
 # Methodology Modes — Quick Decision Tree
@@ -65,7 +64,7 @@ After setting mode:
 
 ## Cross-reference
 
-Full guide: [[methodology-modes-guide]]
-Skill: [[wiki-mode]] (`skills/wiki-mode/SKILL.md`)
+Full guide: `docs/methodology-modes-guide.md`
+Skill: `skills/wiki-mode/SKILL.md`
 Router: `scripts/wiki-mode.py`
 Setup: `bash bin/setup-mode.sh`

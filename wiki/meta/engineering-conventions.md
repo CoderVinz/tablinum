@@ -79,7 +79,7 @@ Cross-project note → see next section. Unsure which project → ask, don't gue
 The rule: **knowledge lives once, links many times. Never duplicate a note into two projects.**
 
 - **Belongs to no project** → it doesn't go in `projects/` at all. Reusable knowledge goes to its type's home: tech → `technologies/`, code → `snippets/`, patterns/terms/explanations → `concepts/`. Ongoing ops → `operations/`; people/companies → `entities/`. Projects are only for work with an outcome and an end.
-- **Knowledge shared by 2+ projects** → same thing: it's reference, so it lives in its home (`technologies/`, `snippets/`, `concepts/`, or the relevant technology/service page), and each `_project.md` wikilinks it. If both projects hit the same postgres quirk, that's a Gotcha on the [[postgres]] tech page, not two bug notes.
+- **Knowledge shared by 2+ projects** → same thing: it's reference, so it lives in its home (`technologies/`, `snippets/`, `concepts/`, or the relevant technology/service page), and each `_project.md` wikilinks it. If both projects hit the same postgres quirk, that's a Gotcha on the `postgres` tech page (i.e. its `technologies/` page), not two bug notes.
 - **A decision/bug/improvement that concretely affects 2+ projects** → file it ONCE, in the project where it surfaced (or the one owning the fix), and set `project:` to a list: `project: [slug-a, slug-b]`. Wikilink it from the other project's `_project.md`. Dashboards filter with `project.contains("slug-a")`.
 - **Promotion**: when a note written inside one project turns out to matter to a second one, promote it — move the file to its home (`technologies/`/`snippets/`/`concepts/`, or merge into the tech/service page), leave wikilinks from both projects. Move, don't copy; update `related:` links after moving.
 
@@ -107,7 +107,7 @@ One page per technology in the stack: `technologies/<name>.md` from `_templates/
 Rules:
 
 - `projects:` frontmatter lists every project slug using it; the "What we use it for" table explains purpose per project. Keep both in sync with each `_project.md` `stack:` field (stack entries are wikilinks to tech pages).
-- `status:` is radar-style: `trial → adopted → deprecated → retired`. Deprecating a tech → link the [[decision]] that killed it.
+- `status:` is radar-style: `trial → adopted → deprecated → retired`. Deprecating a tech → link the `decision` note that killed it.
 - **Ingesting documentation for a tech** ("ingest <url> for <tech>"): run wiki-ingest/defuddle as usual, file the source note under `technologies/docs/`, then update the tech page — append the source to `sources:` and "## Ingested documentation", and fold anything that changes how we use it into "## How we use it" / "## Gotchas". The tech page stays the single readable summary; source notes hold the detail.
 - Bugs caused by a tech's behavior link both ways (bug note ↔ tech page Gotchas).
 

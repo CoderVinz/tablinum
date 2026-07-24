@@ -11,7 +11,6 @@ related:
   - "[[overview]]"
   - "[[log]]"
   - "[[Concepts Index]]"
-  - "[[Compounding Knowledge]]"
 ---
 
 # Wiki Dashboard
