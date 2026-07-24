@@ -8,4 +8,6 @@ status: evergreen
 
 # Sources Index
 
-(empty — pages are filed here by the wiki skills)
+Source summaries + repos file here directly. Subfolders:
+- [[Sources Research Index|Research]] — research synthesis outputs (`/autoresearch`)
+- [[Sources Incoming Index|Incoming]] — captured but not yet properly ingested (triage queue)

@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "updated": "2026-07-24",
   "description": "Canonical wiki folder layout for tablinum. version is the migration signal: bump it whenever the layout changes, add a rename entry and/or a bin/migrations/NNN script for the change, and the laptop's migrate-structure.sh will pick it up on next sync.",
   "spine": ["wiki/index.md", "wiki/hot.md", "wiki/log.md"],
@@ -9,6 +9,8 @@
     { "path": "wiki/technologies", "holds": "Technology/stack inventory — one page per language/framework/library/db/infra/product (type: technology). Ingested tech docs under technologies/docs/." },
     { "path": "wiki/snippets",    "holds": "Reusable code snippets (type: snippet)" },
     { "path": "wiki/sources",     "holds": "Ingested documents / URLs, and code repositories (repo pages)" },
+    { "path": "wiki/sources/research", "holds": "Research synthesis outputs (/autoresearch deep-dives)" },
+    { "path": "wiki/sources/incoming", "holds": "Sources captured but not yet properly ingested/written up — a triage queue" },
     { "path": "wiki/projects",    "holds": "Time-bound work with an outcome" },
     { "path": "wiki/operations",  "holds": "How the systems + org run: services (catalog), runbooks, incidents/postmortems, and processes (repeatable procedures, each linking the tools it needs and the project it serves)" },
     { "path": "wiki/archives",    "holds": "Completed projects" },

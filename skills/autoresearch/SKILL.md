@@ -35,6 +35,7 @@ Full decision tree: [`wiki/meta/transport-fallback.md`](../../wiki/meta/transpor
 
 Before filing research output, consult the vault's methodology mode via `python3 scripts/wiki-mode.py route research "<topic>"`. The router returns the vault-relative path:
 
+- **engineering** (tablinum default): `wiki/sources/research/<Topic>.md`
 - **generic**: `wiki/concepts/<Topic>.md` (v1.7 default)
 - **LYT**: `wiki/notes/<topic>.md` + create or update a topic MOC at `wiki/mocs/<topic>-moc.md`
 - **PARA**: `wiki/resources/<topic>/<topic>.md` (topic-named subfolder under resources)
@@ -171,7 +172,7 @@ After research is complete, create these pages:
 **wiki/entities/**. One page per significant person, org, or product identified
 - Check the index first: update existing entity pages
 
-**wiki/concepts/**. One synthesis page titled "Research: [Topic]"
+**Synthesis page** (per the router — `wiki/sources/research/` in engineering mode). One page titled "Research: [Topic]"
 - This is the master synthesis. Everything comes together here.
 - Sections: Overview, Key Findings, Entities, Concepts, Contradictions, Open Questions, Sources
 - Full frontmatter with related links to all pages created in this session
@@ -253,7 +254,7 @@ Research complete: [Topic]
 Rounds: N | Searches: N | Pages created: N
 
 Created:
-  wiki/concepts/Research: [Topic].md (synthesis)
+  wiki/sources/research/Research: [Topic].md (synthesis)
   wiki/sources/[Source 1].md
   wiki/concepts/[Concept 1].md
   wiki/entities/[Entity 1].md

@@ -63,6 +63,9 @@ wiki/
 | Met/learned about a person (colleague, client, partner) | `person` | `entities/<Name>.md` |
 | Learned about a company or team | `team` | `entities/<name>.md` |
 | Encountered a code repository | source | `sources/<repo>.md` |
+| Ingested a document/URL | source | `sources/<slug>.md` (summary; raw file stays in `.raw/`) |
+| Captured a source, not yet written up | source | `sources/incoming/<slug>.md` (triage queue — process later) |
+| Research synthesis (`/autoresearch`) | source | `sources/research/<slug>.md` |
 | New service/system encountered | `service` | `operations/services/<name>.md` |
 | New jargon/acronym heard | `glossary` | `concepts/<term>.md` |
 | Figured out a company process | `process` | `operations/processes/<name>.md` (link its `tools:` + `project:`) |

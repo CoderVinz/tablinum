@@ -202,7 +202,8 @@ def route_path(mode, content_type, name, cfg):
             "concept":  e["concepts_folder"] + raw + ".md",
             # Session notes land in projects/inbox/; user reroutes to specific projects
             "session":  e["projects_folder"] + "inbox/" + slug + ".md",
-            "research": e["concepts_folder"] + raw + ".md",
+            # Research synthesis lands under sources/research/
+            "research": e["sources_folder"] + "research/" + slug + ".md",
         }
         return mapping[content_type]
 
