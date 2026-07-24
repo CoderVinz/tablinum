@@ -1,7 +1,7 @@
 ---
 type: meta
 title: "Wiki Index"
-updated: 2026-07-14
+updated: 2026-07-24
 tags:
   - meta
   - index
@@ -15,7 +15,7 @@ related:
 
 # Wiki Index
 
-Last updated: 2026-07-14 | Total pages: 0 | Sources ingested: 0
+Last updated: 2026-07-24 | Total pages: 0 | Sources ingested: 0
 
 Navigation: [[overview]] | [[log]] | [[hot]] | [[dashboard]] | [[getting-started]]
 
@@ -25,10 +25,11 @@ Navigation: [[overview]] | [[log]] | [[hot]] | [[dashboard]] | [[getting-started
 |---------|-----------|-------|
 | Concepts | [[Concepts Index]] | 0 |
 | Entities | [[Entities Index]] | 0 |
+| Technologies | [[Technologies Index]] | 0 |
+| Snippets | [[Snippets Index]] | 0 |
 | Sources | [[Sources Index]] | 0 |
-| References | [[Meta Index]] | 0 |
-| Processes | [[Processes Index]] | 0 |
 | Projects | [[Projects Index]] | 0 |
+| Operations | [[Operations Index]] | 0 |
 | Meta | [[Meta Index]] | 0 |
 
 ---
