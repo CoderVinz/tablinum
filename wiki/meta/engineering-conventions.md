@@ -1,7 +1,7 @@
 ---
 type: meta
 title: "Engineering Conventions"
-updated: 2026-07-14
+updated: 2026-07-24
 status: evergreen
 tags:
   - meta
