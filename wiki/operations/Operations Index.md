@@ -8,4 +8,7 @@ status: evergreen
 
 # Operations Index
 
-(empty — pages are filed here by the wiki skills)
+- [[Services Index]] — service catalog (running systems)
+- [[Runbooks Index]] — procedures per service
+- [[Incidents Index]] — incidents & postmortems
+- [[Processes Index]] — repeatable org procedures
