@@ -8,6 +8,8 @@ status: evergreen
 
 # Operations Index
 
+> How the systems and org run — services, runbooks, incidents, and repeatable processes.
+
 - [[Services Index]] — service catalog (running systems)
 - [[Runbooks Index]] — procedures per service
 - [[Incidents Index]] — incidents & postmortems

@@ -8,4 +8,8 @@ status: evergreen
 
 # Snippets Index
 
+> Reusable code snippets worth keeping.
+
+> Reusable code snippets worth keeping.
+
 (empty — pages are filed here by the wiki skills)

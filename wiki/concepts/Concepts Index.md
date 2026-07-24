@@ -8,4 +8,8 @@ status: evergreen
 
 # Concepts Index
 
+> Ideas, explanations, patterns (type: pattern), glossary terms (type: glossary), open questions (type: question), and comparisons.
+
+> Ideas, explanations, patterns (type: pattern), glossary terms (type: glossary), open questions (type: question), and comparisons.
+
 (empty — pages are filed here by the wiki skills)

@@ -8,4 +8,6 @@ status: evergreen
 
 # Archives Index
 
+> Completed projects, moved wholesale from projects/.
+
 (empty — pages are filed here by the wiki skills)

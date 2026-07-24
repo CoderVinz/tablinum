@@ -8,6 +8,8 @@ status: evergreen
 
 # Meta Index
 
+> Everything about the vault itself — orientation, live dashboards, and the operating manual.
+
 Orientation:
 - [[getting-started]] — orientation for a new vault
 - [[overview]] — executive summary of vault contents

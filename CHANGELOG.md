@@ -105,7 +105,6 @@ Every surface that references the layout was brought into agreement:
 
 ### 🧰 Known / deferred
 
-- Per-index one-line summaries in `wiki/index.md` are in progress.
 - `technologies/docs/` and `meta/lint-reports/` are utility subfolders without
   their own hub pages (by design).
 

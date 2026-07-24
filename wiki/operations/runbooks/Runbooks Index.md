@@ -8,4 +8,8 @@ status: evergreen
 
 # Runbooks Index
 
+> Runbooks — repeatable procedures per service.
+
+> Runbooks — repeatable procedures per service.
+
 (empty — pages are filed here by the wiki skills)

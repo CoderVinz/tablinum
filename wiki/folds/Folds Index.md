@@ -8,4 +8,8 @@ status: evergreen
 
 # Folds Index
 
+> DragonScale log rollups (compressed old log entries).
+
+> DragonScale log rollups (compressed old log entries).
+
 (empty — pages are filed here by the wiki skills)

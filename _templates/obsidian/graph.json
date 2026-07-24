@@ -57,10 +57,17 @@
       }
     },
     {
-      "query": "path:wiki/technologies OR path:wiki/snippets",
+      "query": "path:wiki/technologies",
       "color": {
         "a": 1,
         "rgb": 13724009
+      }
+    },
+    {
+      "query": "path:wiki/snippets",
+      "color": {
+        "a": 1,
+        "rgb": 12945088
       }
     },
     {
@@ -71,10 +78,24 @@
       }
     },
     {
-      "query": "path:wiki/folds OR path:wiki/archives",
+      "query": "path:wiki/archives",
       "color": {
         "a": 1,
         "rgb": 11914920
+      }
+    },
+    {
+      "query": "path:wiki/folds",
+      "color": {
+        "a": 1,
+        "rgb": 8421504
+      }
+    },
+    {
+      "query": "path:wiki/canvases",
+      "color": {
+        "a": 1,
+        "rgb": 14137981
       }
     }
   ],
