@@ -7,6 +7,28 @@ independently from upstream.
 
 ## [Unreleased]
 
+### Added
+- **Optional personal-network layer** for vaults that also track personal life:
+  templates `life-person`, `life-group`, `life-event`, `life-place`, the
+  `life-network.base` dashboard (table of people/groups/events/places plus a
+  timeline by year) and `wiki/meta/personal-network-conventions.md` (layout,
+  frontmatter, certainty levels `confirmed | probable | candidate`, privacy
+  rules). Nothing changes for vaults that never create `wiki/life/`.
+- `portfolio` frontmatter field on projects (`main-work | side-work | personal`,
+  optional) and a grouped *Project Portfolio* view in `engineering.base`.
+- Guidance for an "Access and infrastructure" note (no secrets, only the name of
+  the password-manager entry) in `engineering-conventions.md`, and a *Remotes*
+  section in `AGENTS.md` (`upstream` vs `origin`).
+
+### Changed
+- **Convention proposal:** the project MOC is named after the project
+  (`projects/<slug>/<Project Name>.md`) instead of `_project.md`, so wikilinks are
+  unambiguous and the graph view shows readable labels. Templates, `SETUP.md`,
+  `AGENTS.md` and the conventions doc are updated accordingly. Existing
+  `_project.md` notes keep working; rename them at your own pace.
+- `engineering.base`: sorted People view, project views show `title` and keep the
+  `deadline` column.
+
 ### Fixed
 - `scripts/tiling-check.py`: pages longer than the embedding model's context no
   longer fail with `embed_error`. Long pages are split on paragraph boundaries,
@@ -15,6 +37,9 @@ independently from upstream.
 - `scripts/tiling-check.py`: replaced deprecated `datetime.utcnow()` with
   timezone-aware UTC; the generated report now starts with the standard
   frontmatter (`type: meta`, `status: developing`) so it passes lint.
+- Shipped meta pages (`dashboard`, `getting-started`, `methodology-modes`,
+  `transport-fallback`, `engineering-conventions`) were missing
+  `created`/`updated`/`tags` frontmatter and failed lint.
 
 ---
 
