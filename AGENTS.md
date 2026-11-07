@@ -68,7 +68,7 @@ This vault runs in **engineering mode** (`.vault-meta/mode.json`, committed) —
 
 **Before filing any engineering note, read `wiki/meta/engineering-conventions.md`** — it defines the routing table, folder layout, frontmatter contract, and status lifecycles. Summary:
 
-- Active work: `wiki/projects/<slug>/` — each has `_project.md` (MOC) plus `bugs/`, `decisions/`, `improvements/`, `notes/`, `design/`
+- Active work: `wiki/projects/<slug>/` — each has a project-named MOC note (for example `Billing API.md`) plus `bugs/`, `decisions/`, `improvements/`, `notes/`, `design/`
 - Ongoing ops: `wiki/operations/` (runbooks/incidents/services/processes)
 - People + companies/teams: `wiki/entities/`; repeatable procedures: `wiki/operations/processes/`
 - Tech inventory: `wiki/technologies/`; reusable code: `wiki/snippets/`; concepts/patterns/glossary/questions: `wiki/concepts/`

@@ -105,7 +105,7 @@ In the agent, at the vault root, say:
 
 The `wiki` skill scaffolds the domain specifics (hot cache, overview). Then for each active project:
 
-> new project: `<name>` — creates `wiki/projects/<slug>/_project.md` from `_templates/project.md` per the conventions doc
+> new project: `<name>` — creates `wiki/projects/<slug>/<Project Name>.md` from `_templates/project.md` per the conventions doc
 
 Commit the scaffold locally.
 

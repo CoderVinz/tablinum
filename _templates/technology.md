@@ -24,9 +24,9 @@ related: []
 
 | Project | Purpose | Where |
 |---|---|---|
-| [[_project\|{{project}}]] | (what it does there) | (repo/module/service) |
+| [[Project Name]] | (what it does there) | (repo/module/service) |
 
-(One row per project. Keep in sync with each `_project.md` `stack:` list.)
+(One row per project. Keep in sync with each project's `stack:` list.)
 
 ## How we use it
 

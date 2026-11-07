@@ -5,8 +5,12 @@ filters:
 formulas:
   age_days: (now() - file.mtime).days
 properties:
+  title:
+    displayName: Name
   project:
     displayName: Project
+  portfolio:
+    displayName: Portfolio
   type:
     displayName: Type
   status:
@@ -51,6 +55,13 @@ views:
       - file.name
       - role
       - updated
+    sort:
+      - property: updated
+        direction: ASC
+      - property: file.name
+        direction: ASC
+      - property: role
+        direction: ASC
   - type: table
     name: Teams
     filters:
@@ -101,9 +112,30 @@ views:
       and:
         - type == "project"
         - status == "active"
+    groupBy:
+      property: portfolio
+      direction: ASC
     order:
+      - title
       - file.name
       - deadline
+      - updated
+    columnSize:
+      note.title: 385
+      note.portfolio: 180
+      file.name: 120
+      note.deadline: 159
+  - type: table
+    name: Project Portfolio
+    filters:
+      and:
+        - type == "project"
+    groupBy:
+      property: portfolio
+      direction: ASC
+    order:
+      - status
+      - title
       - updated
   - type: table
     name: Open Bugs
