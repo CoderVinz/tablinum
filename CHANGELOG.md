@@ -5,6 +5,19 @@ independently from upstream.
 
 ---
 
+## [Unreleased]
+
+### Fixed
+- `scripts/tiling-check.py`: pages longer than the embedding model's context no
+  longer fail with `embed_error`. Long pages are split on paragraph boundaries,
+  embedded in chunks (retrying with halves on failure) and averaged by length.
+  Short pages keep the original single-call path.
+- `scripts/tiling-check.py`: replaced deprecated `datetime.utcnow()` with
+  timezone-aware UTC; the generated report now starts with the standard
+  frontmatter (`type: meta`, `status: developing`) so it passes lint.
+
+---
+
 ## [2.0.0] — 2026-07-24 — "Engineering Layout"
 
 The vault gets a purpose-built, self-migrating layout, its own first-class

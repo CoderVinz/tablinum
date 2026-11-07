@@ -37,7 +37,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 
 DEFAULT_OLLAMA_URL = "http://127.0.0.1:11434"
@@ -253,6 +253,56 @@ def embed(text: str, model: str, url: str) -> list[float]:
     return emb
 
 
+EMBED_CHUNK_CHARS = 2000
+EMBED_MIN_CHUNK_CHARS = 400
+
+
+def _split_text(text: str, limit: int) -> list[str]:
+    """Split on paragraph boundaries into pieces of at most `limit` characters."""
+    pieces: list[str] = []
+    current = ""
+    for para in text.split("\n\n"):
+        while len(para) > limit:
+            if current:
+                pieces.append(current)
+                current = ""
+            pieces.append(para[:limit])
+            para = para[limit:]
+        if current and len(current) + len(para) + 2 > limit:
+            pieces.append(current)
+            current = para
+        else:
+            current = f"{current}\n\n{para}" if current else para
+    if current.strip():
+        pieces.append(current)
+    return pieces or [text]
+
+
+def _embed_chunk(text: str, model: str, url: str) -> list[float]:
+    """Embed a chunk; on failure retry with halves so large pages are not dropped."""
+    try:
+        return embed(text, model, url)
+    except Exception:
+        if len(text) <= EMBED_MIN_CHUNK_CHARS:
+            raise
+        mid = len(text) // 2
+        left = _embed_chunk(text[:mid], model, url)
+        right = _embed_chunk(text[mid:], model, url)
+        return [(a + b) / 2 for a, b in zip(left, right)]
+
+
+def embed_long(text: str, model: str, url: str) -> list[float]:
+    """Chunk-and-average embedding. Short pages keep the original single-call path."""
+    if len(text) <= EMBED_CHUNK_CHARS:
+        return embed(text, model, url)
+    pieces = _split_text(text, EMBED_CHUNK_CHARS)
+    vectors = [_embed_chunk(piece, model, url) for piece in pieces]
+    weights = [len(piece) for piece in pieces]
+    total = float(sum(weights))
+    dim = len(vectors[0])
+    return [sum(v[i] * w for v, w in zip(vectors, weights)) / total for i in range(dim)]
+
+
 def run_check(
     rebuild: bool,
     report_path: Path | None,
@@ -324,15 +374,16 @@ def run_check(
                 cached_hits += 1
                 continue
             try:
-                emb = embed(body, model, ollama_url)
+                emb = embed_long(body, model, ollama_url)
             except Exception as exc:
                 log(f"ERR embedding {rel}: {exc}")
                 skipped_counts["embed_error"] = skipped_counts.get("embed_error", 0) + 1
                 continue
+            computed_at = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
             cache["embeddings"][rel] = {
                 "hash": h,
                 "embedding": emb,
-                "computed_at": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+                "computed_at": computed_at,
             }
             pages.append((rel, emb))
             computed += 1
@@ -365,10 +416,25 @@ def run_check(
     errors = [p for p in pairs if p[0] >= error_]
     reviews = [p for p in pairs if review <= p[0] < error_]
 
+    generated_at = datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+    generated_date = generated_at[:10]
+
     out_lines: list[str] = []
+    out_lines.append("---")
+    out_lines.append("type: meta")
+    out_lines.append(f'title: "Tiling Report {generated_date}"')
+    out_lines.append(f"created: {generated_date}")
+    out_lines.append(f"updated: {generated_date}")
+    out_lines.append("tags:")
+    out_lines.append("  - meta")
+    out_lines.append("  - lint")
+    out_lines.append("  - tiling")
+    out_lines.append("status: developing")
+    out_lines.append("---")
+    out_lines.append("")
     out_lines.append("# Semantic Tiling Report")
     out_lines.append("")
-    out_lines.append(f"- generated: {datetime.utcnow().isoformat(timespec='seconds')}Z")
+    out_lines.append(f"- generated: {generated_at}")
     out_lines.append(f"- model: {model}")
     out_lines.append(f"- ollama_url: {ollama_url}")
     out_lines.append(f"- thresholds: error>={error_}, review={review}-{error_}")
