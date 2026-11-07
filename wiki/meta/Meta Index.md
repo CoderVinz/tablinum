@@ -19,3 +19,4 @@ Operating manual (how this vault works):
 - [[engineering-conventions]] — folder layout, routing table, note lifecycles
 - [[methodology-modes]] — quick decision tree for query modes
 - [[transport-fallback]] — vault transport chain (cli → mcp → filesystem)
+- [[personal-network-conventions]] — optional layer for people, groups, events, trips and places

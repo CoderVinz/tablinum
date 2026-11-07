@@ -142,4 +142,6 @@ _attachments/
 
 # tablinum: engineering layer — committed on purpose
 !wiki/meta/engineering.base
+# Optional personal-network dashboard (schema/query only; no source data)
+!wiki/meta/life-network.base
 !.vault-meta/mode.json

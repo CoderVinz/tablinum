@@ -2,6 +2,7 @@
 type: project
 title: "{{title}}"
 project: "{{slug}}"
+portfolio: personal   # main-work | side-work | personal
 status: active
 created: "{{date}}"
 updated: "{{date}}"

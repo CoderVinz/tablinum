@@ -21,7 +21,7 @@ related: []
 
 ## Tools
 
-(The systems/tools this process depends on — wikilink each to its `technologies/` page, and mirror them in the `tools:` frontmatter. If the process serves a specific project, wikilink its `_project.md` and set `project:`.)
+(The systems/tools this process depends on — wikilink each to its `technologies/` page, and mirror them in the `tools:` frontmatter. If the process serves a specific project, wikilink that project's main note and set `project:`.)
 
 ## Steps
 

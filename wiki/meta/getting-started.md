@@ -1,6 +1,7 @@
 ---
 type: meta
 title: "Getting Started"
+created: 2026-07-24
 updated: 2026-07-24
 tags:
   - meta
@@ -20,6 +21,8 @@ Every source you add gets processed into 8–15 cross-referenced wiki pages. Eve
 ---
 
 ## Three-Step Quick Start
+
+This is the smallest useful workflow: add one source, ingest it, then query the wiki.
 
 ### 1. Drop a source
 

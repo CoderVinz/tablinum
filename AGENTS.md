@@ -68,7 +68,7 @@ This vault runs in **engineering mode** (`.vault-meta/mode.json`, committed) —
 
 **Before filing any engineering note, read `wiki/meta/engineering-conventions.md`** — it defines the routing table, folder layout, frontmatter contract, and status lifecycles. Summary:
 
-- Active work: `wiki/projects/<slug>/` — each has `_project.md` (MOC) plus `bugs/`, `decisions/`, `improvements/`, `notes/`, `design/`
+- Active work: `wiki/projects/<slug>/` — each has a project-named MOC note (for example `Billing API.md`) plus `bugs/`, `decisions/`, `improvements/`, `notes/`, `design/`
 - Ongoing ops: `wiki/operations/` (runbooks/incidents/services/processes)
 - People + companies/teams: `wiki/entities/`; repeatable procedures: `wiki/operations/processes/`
 - Tech inventory: `wiki/technologies/`; reusable code: `wiki/snippets/`; concepts/patterns/glossary/questions: `wiki/concepts/`
@@ -76,6 +76,20 @@ This vault runs in **engineering mode** (`.vault-meta/mode.json`, committed) —
 
 Templates for `project`, `bug`, `decision`, `improvement`, `runbook`, `incident`, `design`, `meeting`, `snippet` live in `_templates/`. Every engineering note needs `type`, `project`, `status` frontmatter — the dashboards in `wiki/meta/engineering.base` key on them. `/save` files session notes into `wiki/projects/<slug>/notes/`; if the session's project is ambiguous, ask.
 
+## Personal network and access notes (optional)
+
+- Vaults that also track personal life use `wiki/life/` as described in `wiki/meta/personal-network-conventions.md` (templates `life-person`, `life-group`, `life-event`, `life-place`). Read it before filing anything there.
+- If the vault has an access/infrastructure page, read it before connecting to any machine; rules in `wiki/meta/engineering-conventions.md` ("Access and infrastructure note"). Never write secrets in the vault.
+
 ## Syncing
 
 Update machinery from the remote with `bash bin/sync.sh` (or `/sync`) — never plain `git pull`. It snapshots local state, rebases, auto-resolves conflicts (local wins for wiki content, upstream wins for machinery), and never pushes.
+
+## Remotes
+
+A vault clone usually has two remotes:
+
+- `upstream` — the shared tablinum repository, the source of machinery updates (scripts, skills, templates).
+- `origin` — the user's own copy of the vault (backup and sync between machines).
+
+When asked whether there are updates and nothing more specific is said, check **both** (`HEAD..upstream/main` and `HEAD..origin/main`) and report them separately. Never push to `upstream`.

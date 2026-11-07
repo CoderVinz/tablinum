@@ -1,6 +1,7 @@
 ---
 type: meta
 title: "Engineering Conventions"
+created: 2026-07-24
 updated: 2026-07-24
 status: evergreen
 tags:
@@ -23,7 +24,7 @@ Navigation: [[Meta Index]] | [[hot]] | engineering.base (dashboards)
 ```
 wiki/
   projects/<slug>/          active work with an outcome/deadline
-    _project.md             project MOC (template: project) — always exists, links everything
+    <Project Name>.md       project MOC (template: project) — named after the project, always exists, links everything
     bugs/                   bug notes (template: bug)
     decisions/              ADRs (template: decision)
     improvements/           future work / ideas / tech debt (template: improvement)
@@ -70,7 +71,7 @@ wiki/
 | New service/system encountered | `service` | `operations/services/<name>.md` |
 | New jargon/acronym heard | `glossary` | `concepts/<term>.md` |
 | Figured out a company process | `process` | `operations/processes/<name>.md` (link its `tools:` + `project:`) |
-| Project finished | — | move `projects/<slug>/` → `archives/<year>/<slug>/`, set `_project.md` status: archived |
+| Project finished | — | move `projects/<slug>/` → `archives/<year>/<slug>/`, set the project note status to `archived` |
 
 Cross-project note → see next section. Unsure which project → ask, don't guess.
 
@@ -79,8 +80,8 @@ Cross-project note → see next section. Unsure which project → ask, don't gue
 The rule: **knowledge lives once, links many times. Never duplicate a note into two projects.**
 
 - **Belongs to no project** → it doesn't go in `projects/` at all. Reusable knowledge goes to its type's home: tech → `technologies/`, code → `snippets/`, patterns/terms/explanations → `concepts/`. Ongoing ops → `operations/`; people/companies → `entities/`. Projects are only for work with an outcome and an end.
-- **Knowledge shared by 2+ projects** → same thing: it's reference, so it lives in its home (`technologies/`, `snippets/`, `concepts/`, or the relevant technology/service page), and each `_project.md` wikilinks it. If both projects hit the same postgres quirk, that's a Gotcha on the `postgres` tech page (i.e. its `technologies/` page), not two bug notes.
-- **A decision/bug/improvement that concretely affects 2+ projects** → file it ONCE, in the project where it surfaced (or the one owning the fix), and set `project:` to a list: `project: [slug-a, slug-b]`. Wikilink it from the other project's `_project.md`. Dashboards filter with `project.contains("slug-a")`.
+- **Knowledge shared by 2+ projects** → same thing: it's reference, so it lives in its home (`technologies/`, `snippets/`, `concepts/`, or the relevant technology/service page), and each project note wikilinks it. If both projects hit the same postgres quirk, that's a Gotcha on the `postgres` tech page (i.e. its `technologies/` page), not two bug notes.
+- **A decision/bug/improvement that concretely affects 2+ projects** → file it ONCE, in the project where it surfaced (or the one owning the fix), and set `project:` to a list: `project: [slug-a, slug-b]`. Wikilink it from the other project's main note. Dashboards filter with `project.contains("slug-a")`.
 - **Promotion**: when a note written inside one project turns out to matter to a second one, promote it — move the file to its home (`technologies/`/`snippets/`/`concepts/`, or merge into the tech/service page), leave wikilinks from both projects. Move, don't copy; update `related:` links after moving.
 
 Litmus test when filing: "if this project ended tomorrow, is the note dead?" Dead with the project → `projects/<slug>/`. Still useful → `technologies/` / `snippets/` / `concepts/` / `operations/`.
@@ -88,6 +89,14 @@ Litmus test when filing: "if this project ended tomorrow, is the note dead?" Dea
 ## Frontmatter contract
 
 Every engineering note carries `type`, `title`, `project`, `status`, `created`, `updated`, `tags`. Dashboards (engineering.base) key on these — a note with missing `type`/`project`/`status` is invisible to them. `wiki-lint` should flag violations.
+
+Project notes also carry `portfolio:` to classify the project at a glance:
+
+- `main-work` — the main work project currently in focus
+- `side-work` — work-related but secondary (side client, support work)
+- `personal` — personal projects and experiments
+
+Set `portfolio` on the project note itself and keep it stable when the project is archived, so dashboards and indexes can separate primary work, secondary work, and personal projects. The field is optional; projects without it simply appear ungrouped.
 
 `project:` is a single slug, a list (`[slug-a, slug-b]` for notes affecting several projects), or `cross` for company-wide notes with no specific project.
 
@@ -106,7 +115,7 @@ One page per technology in the stack: `technologies/<name>.md` from `_templates/
 
 Rules:
 
-- `projects:` frontmatter lists every project slug using it; the "What we use it for" table explains purpose per project. Keep both in sync with each `_project.md` `stack:` field (stack entries are wikilinks to tech pages).
+- `projects:` frontmatter lists every project slug using it; the "What we use it for" table explains purpose per project. Keep both in sync with each project's `stack:` field (stack entries are wikilinks to tech pages).
 - `status:` is radar-style: `trial → adopted → deprecated → retired`. Deprecating a tech → link the `decision` note that killed it.
 - **Ingesting documentation for a tech** ("ingest <url> for <tech>"): run wiki-ingest/defuddle as usual, file the source note under `technologies/docs/`, then update the tech page — append the source to `sources:` and "## Ingested documentation", and fold anything that changes how we use it into "## How we use it" / "## Gotchas". The tech page stays the single readable summary; source notes hold the detail.
 - Bugs caused by a tech's behavior link both ways (bug note ↔ tech page Gotchas).
@@ -121,13 +130,23 @@ The "who/what/how" layer — highest-value queries a work brain answers: *who ow
 - **Companies / teams** (`entities/`): mission, members, owned services, intake process. Members are the join point: the team's `members:` frontmatter + `## Members` table wikilink each person page, and each person page points back via `team:`. The `engineering.base` **Teams** view lists teams with their members. People and organizations share `entities/` — it is the single org map.
 - **Services** (`operations/services/`): one page per running system. Distinct from technology pages: postgres = technology (`technologies/`), billing-db = service (an instance, with an owner and incidents). Services wikilink their `tech:`, `owner_team:`, runbooks, and incident notes — incidents and runbooks link back. "Who to page" lives here.
 - **Glossary** (`concepts/`): one page per term, cheap to capture the moment jargon appears in a meeting. Ask-don't-guess: if the agent meets an unknown acronym in a session, it should check the glossary before asking.
-- **Processes** (`operations/processes/`): deploy flow, access requests, release rituals. Like runbooks but organizational. Every process wikilinks the **tools** it depends on (`technologies/` pages, mirrored in the `tools:` frontmatter) and, if it serves one, the **project** it belongs to (`project:` + a link to that `_project.md`). Bump `last_verified` when followed successfully.
+- **Processes** (`operations/processes/`): deploy flow, access requests, release rituals. Like runbooks but organizational. Every process wikilinks the **tools** it depends on (`technologies/` pages, mirrored in the `tools:` frontmatter) and, if it serves one, the **project** it belongs to (`project:` + a link to that project's main note). Bump `last_verified` when followed successfully.
 
 Everything wikilinks: person → team → services → tech → projects → bugs/incidents. wiki-query walks these chains, so a well-linked page multiplies the value of every other page.
 
+## Access and infrastructure note
+
+If you use the vault to operate real machines (NAS, home server, router, cloud accounts), keep **one** page for access, for example `operations/Access and infrastructure.md`, and link the per-task runbooks from it:
+
+- host aliases (the real ones live in `~/.ssh/config`), which key or account to use, and what privileges it has;
+- mistakes not to repeat (commands that locked an account, services that must not be restarted);
+- **never** passwords, tokens or private keys — only the *name* of the password-manager entry that holds them.
+
+Agents read this page before connecting to any machine, and update it (and the matching runbook) in the same commit that creates or changes an access, key, service or long-running job.
+
 ## Starting a new project
 
-1. Create `wiki/projects/<slug>/_project.md` from `_templates/project.md` (+ empty `bugs/ decisions/ improvements/ notes/`)
+1. Create `wiki/projects/<slug>/<Project Name>.md` from `_templates/project.md` (+ empty `bugs/ decisions/ improvements/ notes/`)
 2. Add the project to [[hot]] under Active context
 3. Log it in [[log]]
 

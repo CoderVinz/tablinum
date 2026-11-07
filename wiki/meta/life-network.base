@@ -1,0 +1,66 @@
+filters:
+  and:
+    - file.inFolder("wiki/life/")
+    - not:
+        - 'type == "meta"'
+    - or:
+        - file.inFolder("wiki/life/people/")
+        - file.inFolder("wiki/life/groups/")
+        - file.inFolder("wiki/life/events/")
+        - file.inFolder("wiki/life/travel/")
+        - file.inFolder("wiki/life/places/")
+
+properties:
+  relationship_status:
+    displayName: "Relationship certainty"
+  confidence:
+    displayName: "Event certainty"
+  event_type:
+    displayName: "Event type"
+  groups:
+    displayName: "Groups"
+  participants:
+    displayName: "People"
+  participants_status:
+    displayName: "Roster completeness"
+  year:
+    displayName: "Year"
+  start_date:
+    displayName: "Start date"
+  location:
+    displayName: "Location"
+
+views:
+  - type: table
+    name: "Personal network"
+    order:
+      - file.name
+      - type
+      - event_type
+      - relationship
+      - relationship_status
+      - confidence
+      - groups
+      - participants
+      - participants_status
+      - status
+      - updated
+    groupBy:
+      property: type
+      direction: ASC
+  - type: table
+    name: "Timeline by year"
+    order:
+      - year
+      - start_date
+      - file.name
+      - event_type
+      - location
+      - participants
+      - participants_status
+      - groups
+      - confidence
+      - status
+    groupBy:
+      property: year
+      direction: DESC

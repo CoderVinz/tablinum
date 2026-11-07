@@ -1,6 +1,8 @@
 ---
 type: reference
 title: "Methodology Modes — Quick Decision Tree"
+created: 2026-07-24
+updated: 2026-07-24
 tags:
   - reference
   - methodology
