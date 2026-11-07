@@ -1,6 +1,7 @@
 ---
 type: meta
 title: "Dashboard"
+created: 2026-04-08
 updated: 2026-04-08
 tags:
   - meta
