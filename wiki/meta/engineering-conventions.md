@@ -134,6 +134,16 @@ The "who/what/how" layer — highest-value queries a work brain answers: *who ow
 
 Everything wikilinks: person → team → services → tech → projects → bugs/incidents. wiki-query walks these chains, so a well-linked page multiplies the value of every other page.
 
+## Access and infrastructure note
+
+If you use the vault to operate real machines (NAS, home server, router, cloud accounts), keep **one** page for access, for example `operations/Access and infrastructure.md`, and link the per-task runbooks from it:
+
+- host aliases (the real ones live in `~/.ssh/config`), which key or account to use, and what privileges it has;
+- mistakes not to repeat (commands that locked an account, services that must not be restarted);
+- **never** passwords, tokens or private keys — only the *name* of the password-manager entry that holds them.
+
+Agents read this page before connecting to any machine, and update it (and the matching runbook) in the same commit that creates or changes an access, key, service or long-running job.
+
 ## Starting a new project
 
 1. Create `wiki/projects/<slug>/<Project Name>.md` from `_templates/project.md` (+ empty `bugs/ decisions/ improvements/ notes/`)
